@@ -1,25 +1,22 @@
 #include "main.h"
 
 /**
- * times_table - prints the multiplication table of tables 9
+ * jack_bauer - prints hours and minutes
+ *
  */
-void times_table(void)
+void jack_bauer(void)
 {
-int a, b, prod;
-for (a = 0; a <= 9; a++)
+int hr, min;
+for (hr = 0; hr <= 23; hr++)
 {
-_putchar('0');
-for (b = 1; b <= 9; b++)
+for (min = 0; min <= 59; min++)
 {
-_putchar(',');
-_putchar(' ');
-prod = a * b;
-if (prod <= 9)
-_putchar(' ');
-else
-_putchar((prod / 10) + '0');
-_putchar((prod % 10) + '0');
-}
+_putchar((hr / 10) + '0');
+_putchar((hr % 10) + '0');
+_putchar(':');
+_putchar((min / 10) + '0');
+_putchar((min % 10) + '0');
 _putchar('\n');
+}
 }
 }
