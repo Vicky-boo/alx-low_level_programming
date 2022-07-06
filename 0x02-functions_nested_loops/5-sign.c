@@ -5,7 +5,7 @@
  *
  * @n: it is a character for memory location
  *
- * Return: returns 0, 1 and -1 depending on the condition given.
+ * Return: returns 1, 0 -1 depending on the condition given.
  */
 int print_sign(int n)
 {
