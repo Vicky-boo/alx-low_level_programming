@@ -1,26 +1,26 @@
 #include "main.h"
 
 /**
- * print_sign -> prints the sign of a number
+ * print_sign - prints the sign of a number
  *
  * @n: it is a character for memory location
  *
- * Return: 1, 0 -1 
+ * Return: returns 1, 0 and -1 depending on the condition given.
  */
 int print_sign(int n)
 {
 if (n > 0)
 {
 _putchar('+');
-return(1);
 }
 else if (n == 0)
 {
 _putchar('0');
 }
-else
+else if (n < 0)
 {
 _putchar('-');
-return (-1);
 }
+return(1 || 0 || -1);
+return (0);
 }
