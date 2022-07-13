@@ -18,5 +18,5 @@ num2 = (num2 * 10) + (*s - '0');
 else if (num2 > 0)
 break;
 } while (*s++);
-return (num2 * num);
+return (num2 *num);
 }
