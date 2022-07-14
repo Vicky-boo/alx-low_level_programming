@@ -1,65 +1,53 @@
 #include "main.h"
+#include <stdio.h>
 
-/
-* add_strings - adds numbers stored in the add_strings
-* @n2: second number in the string to be added
-* @n1: first number in the string to be added
-* @r: buffer for storing the result
-* @a_int: the current number index
-* Return: prints the result
-*/
-char *add_strings(char *n1, char *n2, char *r, int a_int);
-
-char *add_strings(char *n1, char *n2, char *r, int a_int)
-{
-int num, var = 0;
-for (; *n1 && *n2; n1--, n2--, a_int--)
-{
-num = (*n1 - '0') + (*n2 - '0');
-num += var;
-*(r + a_int) = (num % 10) + '0';
-var = num / 10;
-}
-for (; *n1; n1--, a_int--)
-{
-num = (*n1 - '0') + var;
-*(r + a_int) = (num % 10) + '0';
-var = num / 10;
-}
-for (; *n2; n2--, a_int--)
-{
-num = (*n2 - '0') + var;
-*(r + a_int) = (num % 10) + '0';
-var = num / 10;
-}
-if (var && a_int >= 0)
-{
-*(r + a_int) = (var % 10) + '0';
-return (r + a_int);
-}
-else if (var && a_int < 0)
-return (0);
-return (r + a_int + 1);
-}
-/
-* infinite_add - Adds the two numbers.
-* @n1: number to be added.
-* @n2: The number to be added.
-* @r: buffer to store the result.
-* @size_r: buffer size.
-* Return: returns output
+/**
+* infinite_add - adds two numbers
+* @n1: number one.
+* @n2: number two.
+* @r: buffer that the function will use to store the result.
+* @size_r: buffer size:
+* Return: the pointer to dest.
 */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-int num, b1 = 0, b2 = 0;
-for (num = 0; *(n1 + num); num++)
-b1++;
-for (num = 0; *(n2 + num); num++)
-b2++;
-if (size_r <= b1 + 1 || size_r <= b2 + 1)
+int c1 = 0, c2 = 0, op, bg, dr1, dr2, add = 0;
+while (*(n1 + c1) != '\0')
+c1++;
+while (*(n2 + c2) != '\0')
+c2++;
+if (c1 >= c2)
+bg = c1;
+else
+bg = c2;
+if (size_r <= bg + 1)
 return (0);
-n1 += b1 - 1;
-n2 += b2 - 1;
-*(r + size_r) = '\0';
-return (add_strings(n1, n2, r, --size_r));
+r[bg + 1] = '\0';
+c1--, c2--, size_r--;
+dr1 = *(n1 + c1) - 48, dr2 = *(n2 + c2) - 48;
+while (bg >= 0)
+{
+op = dr1 + dr2 + add;
+if (op >= 10)
+add = op / 10;
+else
+add = 0;
+if (op > 0)
+*(r + bg) = (op % 10) + 48;
+else
+*(r + bg) = '0';
+if (c1 > 0)
+c1--, dr1 = *(n1 + c1) - 48;
+else
+dr1 = 0;
+if (c2 > 0)
+c2--, dr2 = *(n2 + c2) - 48;
+else
+dr2 = 0;
+bg--, size_r--;
+}
+if (*(r) == '0')
+return (r + 1);
+else
+return (r);
 }
